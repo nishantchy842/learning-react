@@ -16,6 +16,7 @@ import Navbar from "./component/navBar";
 import Form from "./container/form/form";
 import PageNotFound from "./container/pageNotFound";
 import RefLearning from "./container/refLearning";
+import TodoApp from "./container/todo";
 
 const App = () => {
   //javascript code
@@ -109,6 +110,7 @@ const App = () => {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/ref" element={<RefLearning />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/todo" element={<TodoApp />} />
         </Routes>
       ) : (
         <Routes>
@@ -116,6 +118,7 @@ const App = () => {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/ref" element={<RefLearning />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/todo" element={<TodoApp />} />
         </Routes>
       )}
     </div>

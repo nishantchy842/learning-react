@@ -19,3 +19,10 @@ code {
   align-items: center;
   gap: 20px;
 }
+
+.todo {
+  display: flex;
+  border: 1px solid black;
+  background: grey;
+  /* width: 200px; */
+}
