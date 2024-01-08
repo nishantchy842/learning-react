@@ -99,6 +99,9 @@ const App = () => {
       <Navbar />
       <button onClick={() => handleRole("USER")}>User</button>
       <button onClick={() => handleRole("ADMIN")}>Admin</button>
+      <p className=" text-red-600 bg-blue-600 h-[100px] w-[200px]">
+        tailwind css
+      </p>
       {role} <br />
       {localData === "USER" ? (
         <Routes>

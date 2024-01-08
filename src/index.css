@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -22,6 +26,9 @@ code {
 
 .todo {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
   border: 1px solid black;
   background: grey;
   /* width: 200px; */

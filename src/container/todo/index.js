@@ -3,21 +3,36 @@ import { Button, Checkbox, DatePicker, Form, Input } from "antd";
 import moment from "moment";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Space, Typography } from "antd";
+import dayjs from "dayjs";
 const { Text, Link } = Typography;
+const { TextArea } = Input;
 
 const TodoApp = () => {
   const [todo, setTodo] = useState([]);
+
+  const [update, setUpdate] = useState(null);
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log("Success:", values);
-    // values = { title: "new todo llist", date: M, complete: true };
     const data = {
       ...values,
       complete: values?.complete ? true : false,
     };
+    if (update === null) {
+      setTodo([...todo, data]);
+    } else {
+      const copyTodo = [...todo];
 
-    setTodo([...todo, data]);
+      copyTodo[update] = {
+        ...copyTodo[update],
+        title: data?.title,
+        complete: data?.complete,
+        date: data?.date,
+      };
+
+      setTodo(copyTodo);
+      setUpdate(null);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -36,13 +51,15 @@ const TodoApp = () => {
     setTodo(copyTodo);
   };
 
-  const onFill = (item) => {
+  const onFill = (item, id) => {
     console.log(item, "item");
     form.setFieldsValue({
       title: item?.title,
       complete: item?.complete,
-      // date: dayjs(item?.date).format('YYYY-MM-DD'),
+      description: item?.description,
+      date: dayjs(item?.date),
     });
+    setUpdate(id);
   };
 
   // git add .
@@ -70,6 +87,9 @@ const TodoApp = () => {
         >
           <Input />
         </Form.Item>
+        <Form.Item label="description" name="description">
+          <TextArea rows={4} />
+        </Form.Item>
 
         <Form.Item
           label="Date"
@@ -90,7 +110,7 @@ const TodoApp = () => {
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Submit
+            {update != null ? "Update" : "Submit"}
           </Button>
         </Form.Item>
       </Form>
@@ -110,12 +130,13 @@ const TodoApp = () => {
                 {item?.title}
               </Text>
               <p>{moment(item?.date).format("MMMM Do YYYY")}</p>
+              <p>{item?.description}</p>
               <Checkbox
                 checked={item?.complete}
                 onChange={(value) => handleChecked(id, item?.complete)}
               ></Checkbox>
               <MdDelete onClick={() => handleDelete(id)} />
-              <MdEdit onClick={() => onFill(item)} />
+              <MdEdit onClick={() => onFill(item, id)} />
             </div>
           );
         })}
