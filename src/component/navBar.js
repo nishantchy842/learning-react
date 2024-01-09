@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const { count } = useSelector((state) => state);
+
   const navData = [
     "Home",
     "Product",
@@ -35,6 +38,7 @@ const Navbar = () => {
 
   return (
     <div className="nav_container">
+      {count}
       {navData?.map((item, id) => {
         return <p onClick={(value) => handleNavMenu(value)}>{item}</p>;
       })}

@@ -4,11 +4,14 @@ import moment from "moment";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Space, Typography } from "antd";
 import dayjs from "dayjs";
+import { useSelector } from "react-redux";
 const { Text, Link } = Typography;
 const { TextArea } = Input;
 
 const TodoApp = () => {
   const [todo, setTodo] = useState([]);
+
+  const { count } = useSelector((state) => state);
 
   const [update, setUpdate] = useState(null);
   const [form] = Form.useForm();
@@ -68,6 +71,7 @@ const TodoApp = () => {
 
   return (
     <div>
+      {count}
       <Form
         form={form}
         name="basic"
