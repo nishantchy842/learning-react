@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const todosSlice = createSlice({
+export const productSlice = createSlice({
   name: "todos",
   initialState: {
-    count: 0,
-    todo: ["hello"],
+    product: {
+      name: "football",
+      price: 200,
+    },
   },
   reducers: {
     incrementCount: (state) => {
-      console.log(state.count, "state");
+      console.log(state);
       state.count = state.count + 1;
     },
     decrementCount: (state) => {
@@ -20,21 +22,11 @@ export const todosSlice = createSlice({
         description: "learning first redux",
       });
     },
-    getAlltodo: (state) => {
-      state.todo.push({
-        name: "first redux",
-        description: "learning first redux",
-      });
-    },
-    
   },
 });
 
+const { reducer, actions } = productSlice;
 
-
-const { reducer, actions } = todosSlice;
-
-export const { incrementCount, decrementCount, setTodoList, getAlltodo } =
-  actions;
+export const { incrementCount, decrementCount, setTodoList } = actions;
 
 export default reducer;

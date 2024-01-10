@@ -2,7 +2,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const { count } = useSelector((state) => state);
+  // state = {
+  //   todo: {},
+  //   product: {},
+  // };
+  const { count } = useSelector((state) => state.todo);
+  const { product } = useSelector((state) => state.product);
 
   const navData = [
     "Home",
