@@ -16,6 +16,9 @@ import Navbar from "./component/navBar";
 import TodoApp from "./container/todo";
 import { useDispatch, useSelector } from "react-redux";
 import { decrementCount, incrementCount } from "./redux/reducer";
+import { Route, Routes } from "react-router-dom";
+import LearningRedux from "./container/learningRedux";
+import Learning from "./container/learningRedux/learning";
 // import Form from "./container/form/form";
 // import PageNotFound from "./container/pageNotFound";
 // import RefLearning from "./container/refLearning";
@@ -34,9 +37,10 @@ const App = () => {
     <div className="App">
       <Navbar />
       <TodoApp />
-      {/* <State /> */}
-      <button onClick={handleClick}>Increment</button>
-      <button onClick={handleDre}>Decrement</button>
+      <Routes>
+        <Route path="/learning-redux" element={<LearningRedux />}></Route>
+        <Route path="/todo-list" element={<Learning />}></Route>
+      </Routes>
     </div>
   );
 };

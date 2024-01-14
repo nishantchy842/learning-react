@@ -4,12 +4,14 @@ import moment from "moment";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Space, Typography } from "antd";
 import dayjs from "dayjs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAlltodo, setTodoList } from "../../redux/reducer";
 const { Text, Link } = Typography;
 const { TextArea } = Input;
 
 const TodoApp = () => {
   const [todo, setTodo] = useState([]);
+  const dispatch = useDispatch();
 
   const { count } = useSelector((state) => state);
 
@@ -21,6 +23,7 @@ const TodoApp = () => {
       ...values,
       complete: values?.complete ? true : false,
     };
+    dispatch(getAlltodo(data));
     if (update === null) {
       setTodo([...todo, data]);
     } else {
