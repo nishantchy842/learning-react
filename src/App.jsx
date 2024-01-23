@@ -1,45 +1,32 @@
-import "./App.css";
-// import HomeOne from "./home";
-// import { Header } from "./container/header";
-// import Test from "./test";
-// import Navbar from "./header";
-import { useEffect, useState } from "react";
-// import { FaBeer } from "react-icons/fa";
-// import { CiHeart } from "react-icons/ci";
-
-// import FirstUseState from "./practise/firstUseState";
-// import Product from "./container/product/product";
-// import { Route, Routes, useNavigate } from "react-router-dom";
-// import Home from "./home";
-// import ProductDetailsPage from "./container/product/productDetailPage";
-import Navbar from "./component/navBar";
-import TodoApp from "./container/todo";
-import { useDispatch, useSelector } from "react-redux";
-import { decrementCount, incrementCount } from "./redux/reducer";
 import { Route, Routes } from "react-router-dom";
-import LearningRedux from "./container/learningRedux";
-import Learning from "./container/learningRedux/learning";
-// import Form from "./container/form/form";
-// import PageNotFound from "./container/pageNotFound";
-// import RefLearning from "./container/refLearning";
-// import TodoApp from "./container/todo";
-// import State from "./container/hook/state";
+import Admin from "./page/admin";
+import User from "./page/user";
+import Login from "./page/login";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(incrementCount(10));
-  };
-  const handleDre = () => {
-    dispatch(decrementCount(20));
-  };
+  const role = localStorage.getItem("role");
+  console.log(role, "role");
+
+  if (role === "male") {
+    return (
+      <Routes>
+        <Route path="/user" element={<User />} />
+        <Route path="*" element={<User />} />
+      </Routes>
+    );
+  }
+  if (role === "female") {
+    return (
+      <Routes>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<Admin />} />
+      </Routes>
+    );
+  }
   return (
     <div className="App">
-      <Navbar />
-      <TodoApp />
       <Routes>
-        <Route path="/learning-redux" element={<LearningRedux />}></Route>
-        <Route path="/todo-list" element={<Learning />}></Route>
+        <Route path="/" element={<Login />} />
       </Routes>
     </div>
   );
